@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biodata Mutia Zahra</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#fff4f4;color:#4b2929}
+header{background:linear-gradient(135deg,#c96f73,#e8a3a5);color:white;text-align:center;padding:50px 20px 100px;border-radius:0 0 40px 40px}
+header h1{font-size:40px;margin-bottom:10px}
+header p{font-size:17px}
+.foto-box{text-align:center;margin-top:-75px}
+.foto-box img{width:155px;height:155px;border-radius:50%;object-fit:cover;border:6px solid white;box-shadow:0 8px 20px rgba(100,40,40,.25);background:#f3cccc}
+.tombol-foto{margin-top:15px;background:#c96f73;color:white;padding:11px 20px;border-radius:25px;display:inline-block;cursor:pointer;font-weight:bold}
+.tombol-foto:hover{background:#b85d61}
+.container{max-width:900px;margin:35px auto;padding:0 20px}
+.card{background:white;padding:30px;margin-bottom:25px;border-radius:20px;box-shadow:0 8px 25px rgba(100,50,50,.10);border-left:5px solid #d68184}
+.card h2{color:#b65c60;margin-bottom:20px}
+.biodata{display:grid;grid-template-columns:170px 1fr;gap:15px}
+.label{font-weight:bold;color:#a44f53}
+.pendidikan{list-style:none}
+.pendidikan li{background:#fff0f0;padding:15px;margin:10px 0;border-radius:12px;border-left:4px solid #d68184}
+.box-container{display:flex;flex-wrap:wrap;gap:15px}
+.box{flex:1;min-width:200px;background:#fff0f0;padding:22px;border-radius:15px;text-align:center}
+.icon{font-size:32px;margin-bottom:10px}
+.box h3{color:#b65c60;margin-bottom:8px}
+.motto{background:linear-gradient(135deg,#d68184,#e8a3a5);color:white;text-align:center;border:none}
+.motto h2{color:white}
+.motto p{font-size:20px;line-height:1.7;font-style:italic}
+footer{background:#c96f73;color:white;text-align:center;padding:25px;margin-top:40px}
+@media(max-width:600px){header h1{font-size:32px}.biodata{grid-template-columns:1fr;gap:5px}.label{margin-top:10px}.card{padding:22px}.motto p{font-size:17px}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Mutia Zahra</h1>
+<p>Website Biodata Siswa</p>
+</header>
+
+<div class="foto-box">
+<img id="fotoProfil" src="foto.jpg" alt="Foto Mutia Zahra">
+<br>
+<label for="pilihFoto" class="tombol-foto">📷 Tambah / Ganti Foto</label>
+<input type="file" id="pilihFoto" accept="image/*" style="display:none">
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>🌷 Biodata</h2>
+<div class="biodata">
+<div class="label">Nama</div><div>Mutia Zahra</div>
+<div class="label">Kelas</div><div>XI TKJ 3</div>
+<div class="label">No. Absen</div><div>13</div>
+<div class="label">Kelebihan</div><div>Mandiri</div>
+<div class="label">Ekstrakurikuler</div><div>PMR</div>
+</div>
+</div>
+
+<div class="card">
+<h2>🎓 Riwayat Pendidikan</h2>
+<ul class="pendidikan">
+<li>🌸 TK TUNAS HARAPAN</li>
+<li>📚 SDN 02 GONDANG</li>
+<li>📖 MTS ASSAID BLADO</li>
+<li>💻 SMK NEGERI 1 BLADO</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🎀 Tentang Saya</h2>
+<div class="box-container">
+<div class="box"><div class="icon">✨</div><h3>Kelebihan</h3><p>Mandiri</p></div>
+<div class="box"><div class="icon">🎬</div><h3>Hobi</h3><p>Menonton Animasi</p></div>
+<div class="box"><div class="icon">🎧</div><h3>Hobi</h3><p>Mendengarkan Musik</p></div>
+</div>
+</div>
+
+<div class="card">
+<h2>❤️ Kegiatan Sekarang</h2>
+<div class="box-container">
+<div class="box"><div class="icon">🩸</div><h3>PMR</h3><p>Mengikuti kegiatan ekstrakurikuler Palang Merah Remaja (PMR).</p></div>
+</div>
+</div>
+
+<div class="card motto">
+<h2>🌹 Motto Hidup</h2>
+<p>"Kita tidak perlu merubah diri kita sendiri hanya karena ingin disukai orang lain."</p>
+</div>
+
+</div>
+
+<footer><p>© 2026 Mutia Zahra • XI TKJ 3</p></footer>
+
+<script>
+const pilihFoto = document.getElementById("pilihFoto");
+const fotoProfil = document.getElementById("fotoProfil");
+
+const fotoTersimpan = localStorage.getItem("fotoMutia");
+if (fotoTersimpan) {
+    fotoProfil.src = fotoTersimpan;
+}
+
+pilihFoto.addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("Silakan pilih file foto/gambar.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const hasilFoto = e.target.result;
+        fotoProfil.src = hasilFoto;
+
+        try {
+            localStorage.setItem("fotoMutia", hasilFoto);
+        } catch (error) {
+            alert("Foto terlalu besar untuk penyimpanan browser. Coba pilih foto yang ukurannya lebih kecil.");
+        }
+    };
+
+    reader.readAsDataURL(file);
+});
+</script>
+
+</body>
+</html>
